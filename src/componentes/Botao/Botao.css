@@ -8,7 +8,8 @@
     cursor: pointer;
     color: #fff;
     margin-top: 20px;
-    
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
 }
 
 .button:hover {

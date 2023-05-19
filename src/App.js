@@ -4,9 +4,9 @@ import Formulario from './componentes/Formulario';
 import Time from './componentes/Time';
 import Footer from './componentes/Footer';
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Prata&display=swap');
-</style>
+import { useCollapse } from 'react-collapsed';
+import MinhaOrganizacao from './componentes/MinhaOrganizacao';
+
 
 function App() {
 
@@ -24,27 +24,27 @@ function App() {
     {
       nome: 'Data Science',
       corPrimaria: '#A6D157',
-      corSecundaria:'#F0F8E2'
+      corSecundaria: '#F0F8E2'
     },
     {
       nome: 'Devops',
       corPrimaria: '#E06B69',
-      corSecundaria:'#FDE7E8'
+      corSecundaria: '#FDE7E8'
     },
     {
       nome: 'UX e Design',
       corPrimaria: '#DB6EBF',
-      corSecundaria:'#FAE9F5'
+      corSecundaria: '#FAE9F5'
     },
     {
       nome: 'Mobile',
       corPrimaria: '#FFBA05',
-      corSecundaria:'#FFF5D9'
+      corSecundaria: '#FFF5D9'
     },
     {
       nome: 'Inovação e Gestão',
       corPrimaria: '#FF8A29',
-      corSecundaria:'#FFEEDF'
+      corSecundaria: '#FFEEDF'
     },
   ]
 
@@ -54,15 +54,26 @@ function App() {
     setColaboradores([...colaboradores, colaborador])
   }
 
+  const { getCollapseProps, getToggleProps} = useCollapse();
+
+
   return (
     <div className="App">
       <Banner />
-      <Formulario times={(times.map(time => time.nome))} aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)} />
+      <div {...getCollapseProps()}>
+        <div className='form'>
+          <Formulario times={(times.map(time => time.nome))} aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)} />
+        </div>
+      </div>
       
-      {times.map(time => <Time 
-        key={time.nome} 
-        nome={time.nome} 
-        corPrimaria={time.corPrimaria} 
+      <div {...getToggleProps()}>
+        <MinhaOrganizacao/>
+      </div>
+
+      {times.map(time => <Time
+        key={time.nome}
+        nome={time.nome}
+        corPrimaria={time.corPrimaria}
         corSecundaria={time.corSecundaria}
         colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
       />)}

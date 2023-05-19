@@ -1,0 +1,16 @@
+.title {
+    color: #6278F7;
+    font-family: 'Prata', sans-serif;
+    font-size: 42px;
+    border-bottom: 4px solid;
+}
+
+.linha {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 36%;
+    margin-right: 15%;
+    margin-top: 5%;
+    margin: 4% 15% 4% 36%;
+}
+
